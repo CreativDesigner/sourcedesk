@@ -1,13 +1,13 @@
 <?php
 
 function sd_licenseCheck($licenseKey = "", $cacheKey = "", $r = false){
-	/* Please insert the secret shown in the product configuration in sourceDESK here */
+	/* Please insert the secret shown in the product configuration in haseDESK here */
 	$secret = "SECRET_HERE";
 	/* Please insert the number of directory should be removed from the path end */
 	$rmdir = 0;
 	/* Please insert the ID of the product */
 	$pid = PID_HERE;
-	/* Please insert the URL to sourceDESK */
+	/* Please insert the URL to haseDESK */
 	$url = "URL_HERE";
 	/* DO NOT CHANGE ANYTHING BELOW THIS LINE */
 

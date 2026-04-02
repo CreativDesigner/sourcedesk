@@ -12,6 +12,6 @@ $addonlang['PAY'] = "Deposit with PayPal";
 $addonlang['APIUSERNAME'] = "API username";
 $addonlang['APIPASSWORD'] = "API passwort";
 $addonlang['APISIGNATURE'] = "API signature";
-$addonlang['ONLY_REFUNDS'] = "Only needed for refunds via sourceDESK";
+$addonlang['ONLY_REFUNDS'] = "Only needed for refunds via haseDESK";
 
 ?>

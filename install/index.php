@@ -6,7 +6,7 @@ define("SOURCEDESK", true);
 // Start session for saving information
 session_start();
 
-function sourceDESK_bug($data)
+function haseDESK_bug($data)
 {}
 
 // Language system

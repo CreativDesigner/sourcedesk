@@ -2,7 +2,7 @@
 
 $addonlang = [
     "NAME" => "WHMCS Import",
-    "INTRO" => "On this page, you can import data from WHMCS to sourceDESK. This requires the database credentials of WHMCS. Furthermore, you need to choose which data should be imported. You can find the database credentials in the main directory of your WHMCS installation in the file <code>configuration.php</code> .",
+    "INTRO" => "On this page, you can import data from WHMCS to haseDESK. This requires the database credentials of WHMCS. Furthermore, you need to choose which data should be imported. You can find the database credentials in the main directory of your WHMCS installation in the file <code>configuration.php</code> .",
     "DBHOST" => "Database host",
     "DBUSER" => "Database user",
     "DBPASSWORD" => "Database password",

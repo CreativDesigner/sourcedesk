@@ -47,7 +47,7 @@
         <div class="box">
             <h4>Oops! An exception encountered.</h4>
             <p><?=htmlentities($ex->getMessage()) ?: "No details available";?></p>
-            <footer>&copy; Copyright sourceDESK <?=date("Y");?></footer>
+            <footer>&copy; Copyright haseDESK <?=date("Y");?></footer>
         </div>
     </body>
 </html>

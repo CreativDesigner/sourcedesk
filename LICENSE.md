@@ -1,6 +1,6 @@
 # External software
 
-sourceDESK makes use of the following open source software:
+haseDESK makes use of the following open source software:
 
 - [jQuery](https://github.com/jquery/jquery)
 - [SB Admin 2](https://github.com/BlackrockDigital/startbootstrap-sb-admin-2)
@@ -57,7 +57,7 @@ The license documents are included where necessary. Modules (directory "modules"
 
 # Graphics
 
-sourceDESK uses the following graphics:
+haseDESK uses the following graphics:
 
 - [images/auth2.png](https://www.iconfinder.com/icons/1055030/envelope_mail_message_icon), [GPL license](https://www.gnu.org/copyleft/gpl.html)
 - [images/privacy.png](https://www.iconfinder.com/icons/1055000/person_profile_profle_user_icon), [GPL license](https://www.gnu.org/copyleft/gpl.html)

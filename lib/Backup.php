@@ -481,7 +481,7 @@ class BackupDatabase
     {
         global $db;
 
-        $this->dump = "# Datenbank-Backup: sourceDESK\r\n";
+        $this->dump = "# Datenbank-Backup: haseDESK\r\n";
 
         $tables = $this->get_tables();
         foreach ($tables as $table) {

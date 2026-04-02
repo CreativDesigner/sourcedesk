@@ -2,7 +2,7 @@
 
 $addonlang = [
     "NAME" => "WHMCS-Import",
-    "INTRO" => "Auf dieser Seite kann der Import von Bestandsdaten aus WHMCS in sourceDESK durchgef&uuml;hrt werden. Dazu werden die Datenbank-Zugangsdaten von WHMCS ben&ouml;tigt, ferner muss ausgew&auml;hlt werden, welche Daten importiert werden sollen. Die Zugangsdaten f&uuml;r die WHMCS-Datenbank stehen im Hauptverzeichnis der WHMCS-Installation in der Datei <code>configuration.php</code> .",
+    "INTRO" => "Auf dieser Seite kann der Import von Bestandsdaten aus WHMCS in haseDESK durchgef&uuml;hrt werden. Dazu werden die Datenbank-Zugangsdaten von WHMCS ben&ouml;tigt, ferner muss ausgew&auml;hlt werden, welche Daten importiert werden sollen. Die Zugangsdaten f&uuml;r die WHMCS-Datenbank stehen im Hauptverzeichnis der WHMCS-Installation in der Datei <code>configuration.php</code> .",
     "DBHOST" => "Datenbank-Host",
     "DBUSER" => "Datenbank-Benutzer",
     "DBPASSWORD" => "Datenbank-Passwort",

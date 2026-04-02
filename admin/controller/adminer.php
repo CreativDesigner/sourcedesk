@@ -23,7 +23,7 @@ function adminer_object()
     {
         function name()
         {
-            return 'sourceDESK DB';
+            return 'haseDESK DB';
         }
 
         function credentials()

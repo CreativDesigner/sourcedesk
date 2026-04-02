@@ -12,7 +12,7 @@ $sql = $db->query("SELECT * FROM monitoring_server WHERE ID = $serverId AND ssh_
 
 if ($serverHost) {
     if (!$sql->num_rows) {
-        die("Unfortunately, the link specified is not valid\nPlease refresh server page in sourceDESK and get new link");
+        die("Unfortunately, the link specified is not valid\nPlease refresh server page in haseDESK and get new link");
     }
     $server = $sql->fetch_object();
 
@@ -60,7 +60,7 @@ if (!$sql->num_rows) {
     echo "#!/bin/bash\n";
     echo "echo ''\n";
     echo "echo -e \"\e[1;31mUnfortunately, the link specified is not valid\e[0m\" 1>&2\n";
-    echo "echo \"Please refresh server page in sourceDESK and get new link\"\n";
+    echo "echo \"Please refresh server page in haseDESK and get new link\"\n";
     echo 'echo ""';
     exit;
 }
@@ -70,7 +70,7 @@ $rsa->setPublicKeyFormat(CRYPT_RSA_PUBLIC_FORMAT_OPENSSH);
 $result = $rsa->createKey(2048);
 
 $prvkey = $result['privatekey']->getPrivateKey();
-$pubkey = trim(str_replace('phpseclib-generated-key', 'sourceDESK', $result['publickey']->getPublicKey('OpenSSH')));
+$pubkey = trim(str_replace('phpseclib-generated-key', 'haseDESK', $result['publickey']->getPublicKey('OpenSSH')));
 
 $db->query("UPDATE monitoring_server SET ssh_key = '" . $db->real_escape_string(encrypt($prvkey)) . "' WHERE ID = $serverId");
 
@@ -79,8 +79,8 @@ header("Content-Type: application/x-sh");
 #!/bin/bash
 # Do not change anything in this script
 echo ""
-echo -e "\e[1;32mWelcome to sourceDESK!\e[0m"
-echo "We are now connecting your server with sourceDESK, please be patient."
+echo -e "\e[1;32mWelcome to haseDESK!\e[0m"
+echo "We are now connecting your server with haseDESK, please be patient."
 echo ""
 
 echo "Checking prerequirements...";
@@ -146,22 +146,22 @@ fi
 
 echo -e "\e[1;32mPrerequirements are met\e[0m"
 echo ""
-echo "Activating sourceDESK access...";
+echo "Activating haseDESK access...";
 
 rm /usr/local/bin/sourcedesk-rsh &> /dev/null
-sed -i '/sourceDESK/d' ~/.ssh/authorized_keys &> /dev/null
-sed -i '/sourceDESK/d'/etc/ssh/sshd_config &> /dev/null
+sed -i '/haseDESK/d' ~/.ssh/authorized_keys &> /dev/null
+sed -i '/haseDESK/d'/etc/ssh/sshd_config &> /dev/null
 rm /usr/local/bin/sourcedesk-remove &> /dev/null
 
-echo -e "\e[0;32mPrevious sourceDESK connections removed (if any)\e[0m"
+echo -e "\e[0;32mPrevious haseDESK connections removed (if any)\e[0m"
 
 cat <<\EOT >> /usr/local/bin/sourcedesk-rsh
 #!/bin/bash
-# Restricted shell of sourceDESK
+# Restricted shell of haseDESK
 
 if [[ -z $SSH_ORIGINAL_COMMAND ]]
 then
-    echo "sourceDESK restricted shell: interactive shell not allowed"
+    echo "haseDESK restricted shell: interactive shell not allowed"
     exit 1
 fi
 
@@ -175,7 +175,7 @@ case $SSH_ORIGINAL_COMMAND in
     "yum update "*)
         SUBSTRING=$(echo $SSH_ORIGINAL_COMMAND | cut -c -12)
         if [[ "$SUBSTRING" =~ [^a-zA-Z0-9\-\ ] ]]; then
-            echo "sourceDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
+            echo "haseDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
             exit 2
         fi
         bash -c "$SSH_ORIGINAL_COMMAND"
@@ -183,7 +183,7 @@ case $SSH_ORIGINAL_COMMAND in
     "apt-get install --only-upgrade "*)
         SUBSTRING=$(echo $SSH_ORIGINAL_COMMAND | cut -c -32)
         if [[ "$SUBSTRING" =~ [^a-zA-Z0-9\-\ ] ]]; then
-            echo "sourceDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
+            echo "haseDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
             exit 2
         fi
         bash -c "$SSH_ORIGINAL_COMMAND"
@@ -191,13 +191,13 @@ case $SSH_ORIGINAL_COMMAND in
     "sudo apt-get install --only-upgrade "*)
         SUBSTRING=$(echo $SSH_ORIGINAL_COMMAND | cut -c -37)
         if [[ "$SUBSTRING" =~ [^a-zA-Z0-9\-\ ] ]]; then
-            echo "sourceDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
+            echo "haseDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
             exit 2
         fi
         bash -c "$SSH_ORIGINAL_COMMAND"
         ;;
     *)
-        echo "sourceDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
+        echo "haseDESK restricted shell: command not allowed: $SSH_ORIGINAL_COMMAND"
         exit 2
         ;;
 esac
@@ -207,7 +207,7 @@ echo -e "\e[0;32mRestricted shell installed\e[0m"
 
 cat <<\EOT >> /usr/local/bin/sourcedesk-remove
 #!/bin/bash
-# Deinstallation script of sourceDESK
+# Deinstallation script of haseDESK
 
 # Enforce root
 if [ "$(id -u)" != "0" ]; then
@@ -217,12 +217,12 @@ fi
 
 # Deinstall routine
 rm /usr/local/bin/sourcedesk-rsh &> /dev/null
-sed -i '/sourceDESK/d' ~/.ssh/authorized_keys &> /dev/null
-sed -i '/sourceDESK/d'/etc/ssh/sshd_config &> /dev/null
+sed -i '/haseDESK/d' ~/.ssh/authorized_keys &> /dev/null
+sed -i '/haseDESK/d'/etc/ssh/sshd_config &> /dev/null
 rm /usr/local/bin/sourcedesk-remove &> /dev/null
 
 # Success
-echo "sourceDESK removed"
+echo "haseDESK removed"
 exit 1
 EOT
 chmod +x /usr/local/bin/sourcedesk-remove
@@ -266,31 +266,31 @@ if ! [ -a "/etc/ssh/sshd_config" ]; then
 else
     echo -e "\e[0;32mSSH daemon config file found\e[0m"
     echo "" >> /etc/ssh/sshd_config
-    echo "# sourceDESK config (activate public key authorization)" >> /etc/ssh/sshd_config
-    echo "RSAAuthentication yes # sourceDESK" >> /etc/ssh/sshd_config
-    echo "PubkeyAuthentication yes # sourceDESK" >> /etc/ssh/sshd_config
-    echo "PermitRootLogin yes # sourceDESK" >> /etc/ssh/sshd_config
+    echo "# haseDESK config (activate public key authorization)" >> /etc/ssh/sshd_config
+    echo "RSAAuthentication yes # haseDESK" >> /etc/ssh/sshd_config
+    echo "PubkeyAuthentication yes # haseDESK" >> /etc/ssh/sshd_config
+    echo "PermitRootLogin yes # haseDESK" >> /etc/ssh/sshd_config
     echo -e "\e[0;32mSSH public key authorization enabled\e[0m"
 fi
 
 echo ""
-echo "Calling sourceDESK to finish...";
+echo "Calling haseDESK to finish...";
 
 URL="<?=$CFG['PAGEURL'];?>ssh_access/<?=$serverId;?>/<?=$sshHash;?>/${HOSTNAME}/${SSHPORT}/${SYSTEM}"
 OUTPUT=$(wget -q -O - ${URL})
 if ! [ "$OUTPUT" == "ok" ]; then
-    echo -e "\e[1;31msourceDESK have no access to this server" 1>&2
+    echo -e "\e[1;31mhaseDESK have no access to this server" 1>&2
     echo -e "\e[1;31mPlease check the error message\e[0m" 1>&2
     echo ""
 
     if [ "$OUTPUT" == "" ]; then
-        echo "Unable to call sourceDESK, please call URL manually (expected response: ok)"
+        echo "Unable to call haseDESK, please call URL manually (expected response: ok)"
         echo ${URL}
     else
         echo -e "\e[0m${OUTPUT}"
     fi
 else
-    echo -e "\e[1;32msourceDESK access activated\e[0m"
+    echo -e "\e[1;32mhaseDESK access activated\e[0m"
 fi
 
 <?php

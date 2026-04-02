@@ -213,7 +213,7 @@ class SystemRequirements
                         <i><?=$msg;?></i><br /><br />
                         Please tell this error message your server administrator. If you have any questions, please feel free to contact us.
                     </p>
-                    <footer>&copy; Copyright sourceDESK <?=date("Y");?></footer>
+                    <footer>&copy; Copyright haseDESK <?=date("Y");?></footer>
                 </div>
             </body>
         </html>

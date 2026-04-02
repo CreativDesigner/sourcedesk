@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>License Key Failure :: sourceDESK</title>
+        <title>License Key Failure :: haseDESK</title>
         <link rel="shortcut icon" href="../themes/favicon.ico" type="image/x-icon" />
 
         <style>
@@ -53,7 +53,7 @@
         <div class="box">
             <h4>License Key Failure</h4>
             <div>
-                Unfortunately, there was a problem verifying your sourceDESK license key.
+                Unfortunately, there was a problem verifying your haseDESK license key.
 
                 <?php if (!empty($_GET['reason'])) {?>
                 This has the following reason:<br /><br /><?=htmlentities($_GET['reason']);?><br />
@@ -76,7 +76,7 @@
                     <li><a href="https://sourceway.de/de/tickets" target="_blank">Contact support</a></li>
                 </ul>
             </div>
-            <footer>&copy; Copyright sourceDESK <?=date("Y");?></footer>
+            <footer>&copy; Copyright haseDESK <?=date("Y");?></footer>
         </div>
     </body>
 </html>

@@ -11,7 +11,7 @@ session_cache_expire(600);
 session_start();
 
 // Error handler
-function sourceDESK_bug($data)
+function haseDESK_bug($data)
 {
     global $CFG;
 
@@ -24,11 +24,11 @@ function sourceDESK_bug($data)
     }
 }
 
-function sourceDESK_error($errCode, $errText, $errFile, $errLine)
+function haseDESK_error($errCode, $errText, $errFile, $errLine)
 {
     switch ($errCode) {
         case E_USER_ERROR:
-            sourceDESK_bug([
+            haseDESK_bug([
                 "error" => $errText,
                 "file" => $errFile,
                 "line" => $errLine,
@@ -42,13 +42,13 @@ function sourceDESK_error($errCode, $errText, $errFile, $errLine)
     return false;
 }
 
-set_error_handler("sourceDESK_error");
+set_error_handler("haseDESK_error");
 
-function sourceDESK_exception($ex)
+function haseDESK_exception($ex)
 {
     global $CFG;
 
-    sourceDESK_bug([
+    haseDESK_bug([
         "exception" => $ex->getMessage(),
         "code" => $ex->getCode(),
         "file" => $ex->getFile(),
@@ -66,7 +66,7 @@ function sourceDESK_exception($ex)
     }
 }
 
-set_exception_handler("sourceDESK_exception");
+set_exception_handler("haseDESK_exception");
 
 // Define ADMIN_AREA
 define("ADMIN_AREA", true);

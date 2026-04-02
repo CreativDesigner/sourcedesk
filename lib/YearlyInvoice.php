@@ -16,7 +16,7 @@ class YearlyInvoice extends TCPDF
         $pdf->year = $year;
         $pdf->user = User::getInstance($uid, "ID");
 
-        $pdf->SetCreator("sourceDESK");
+        $pdf->SetCreator("haseDESK");
         $pdf->SetAuthor($CFG['PAGENAME']);
         $pdf->SetTitle($l['FILENAME'] . " " . $year);
         $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);

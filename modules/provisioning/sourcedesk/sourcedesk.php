@@ -2,7 +2,7 @@
 
 class SourceDeskProv extends Provisioning
 {
-    protected $name = "sourceDESK Lizenzen";
+    protected $name = "haseDESK Lizenzen";
     protected $short = "sourcedesk";
     protected $lang;
     protected $options = array();

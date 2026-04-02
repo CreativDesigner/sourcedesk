@@ -377,7 +377,7 @@ class HexonetDNS extends DNSProvider
         $ch = curl_init("https://api.ispapi.net/api/call.cgi");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($args));
-        curl_setopt($ch, CURLOPT_USERAGENT, "ISPAPI via sourceDESK");
+        curl_setopt($ch, CURLOPT_USERAGENT, "ISPAPI via haseDESK");
         curl_setopt($ch, CURLOPT_REFERER, $CFG['PAGEURL']);
         $res = curl_exec($ch);
         curl_close($ch);

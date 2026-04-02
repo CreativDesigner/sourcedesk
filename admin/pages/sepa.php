@@ -62,7 +62,7 @@ if (!$ari->check(7)) {require __DIR__ . "/error.php";
             die("Login TAN not supported");
         }
 
-        $sdd = new AbcAeffchen\Sephpa\SephpaDirectDebit($CFG['PAGENAME'], $id = "sourceDESK-" . time(), AbcAeffchen\Sephpa\SephpaDirectDebit::SEPA_PAIN_008_002_02);
+        $sdd = new AbcAeffchen\Sephpa\SephpaDirectDebit($CFG['PAGENAME'], $id = "haseDESK-" . time(), AbcAeffchen\Sephpa\SephpaDirectDebit::SEPA_PAIN_008_002_02);
 
         $collections = [];
 
@@ -170,7 +170,7 @@ if (!$ari->check(7)) {require __DIR__ . "/error.php";
     $g = $gateways->get()['sdd'];
 
     if (isset($_GET['download']) && !$_SESSION['conflicts'] && is_array($_SESSION['transactions']) && count($_SESSION['transactions']) > 0) {
-        $sdd = new AbcAeffchen\Sephpa\SephpaDirectDebit($CFG['PAGENAME'], $id = "sourceDESK-" . time(), AbcAeffchen\Sephpa\SephpaDirectDebit::SEPA_PAIN_008_002_02);
+        $sdd = new AbcAeffchen\Sephpa\SephpaDirectDebit($CFG['PAGENAME'], $id = "haseDESK-" . time(), AbcAeffchen\Sephpa\SephpaDirectDebit::SEPA_PAIN_008_002_02);
 
         $collections = [];
 
@@ -221,7 +221,7 @@ if (!$ari->check(7)) {require __DIR__ . "/error.php";
             $_SESSION['download'] = true;
 
             header('Content-type: text/xml');
-            header('Content-Disposition: attachment; filename="sourceDESK-' . $time . '.xml"');
+            header('Content-Disposition: attachment; filename="haseDESK-' . $time . '.xml"');
             die($sdd->generateXml());
         }
     }

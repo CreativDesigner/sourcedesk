@@ -21,7 +21,7 @@ if ($GLOBALS["CFG"]["GIT_TYPE"] == "github") {
 			$ch = curl_init("https://api.github.com/repos/$pid/releases");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_USERPWD, urlencode($CFG['GITHUB_USER']) . ":" . urlencode($CFG['GITHUB_KEY']));
-			curl_setopt($ch, CURLOPT_USERAGENT, 'sourceDESK');
+			curl_setopt($ch, CURLOPT_USERAGENT, 'haseDESK');
 			$r = json_decode(curl_exec($ch));
 			curl_close($ch);
 
@@ -50,7 +50,7 @@ if ($GLOBALS["CFG"]["GIT_TYPE"] == "github") {
 			$ch = curl_init("https://github.com/$pid/archive/$tname.zip");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_USERPWD, urlencode($CFG['GITHUB_USER']) . ":" . urlencode($CFG['GITHUB_KEY']));
-			curl_setopt($ch, CURLOPT_USERAGENT, 'sourceDESK');
+			curl_setopt($ch, CURLOPT_USERAGENT, 'haseDESK');
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 			$r = curl_exec($ch);
 			curl_close($ch);

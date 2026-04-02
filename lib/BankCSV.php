@@ -306,7 +306,7 @@ class BankCSV_Bunq extends BankCSV_Model
         $apiContext = \bunq\Context\ApiContext::create(
             bunq\Util\BunqEnumApiEnvironmentType::PRODUCTION(),
             $credentials["API-Schlüssel"],
-            "sourceDESK"
+            "haseDESK"
         );
 
         \bunq\Context\BunqContext::loadApiContext($apiContext);
@@ -1375,7 +1375,7 @@ class BankCSV_Hbci extends BankCSV_Model
                 $credentials['HBCI-PIN'],
                 null,
                 "7C066410D3E77C97ACA0EBC9E",
-                "sourceDESK",
+                "haseDESK",
                 $CFG['VERSION']
             );
 

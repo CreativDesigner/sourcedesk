@@ -58,7 +58,7 @@ class DB
 
         if ($this->bugs) {
             if ($this->db->connect_errno) {
-                sourceDESK_bug(array_merge([
+                haseDESK_bug(array_merge([
                     "db_connect_errno" => $this->db->connect_errno,
                     "db_connect_error" => $this->db->connect_error,
                     "function" => $f,
@@ -66,7 +66,7 @@ class DB
             }
 
             if ($this->db->errno && $this->db->errno != 1227) {
-                sourceDESK_bug(array_merge([
+                haseDESK_bug(array_merge([
                     "db_errno" => $this->db->errno,
                     "db_error" => $this->db->error,
                     "function" => $f,

@@ -213,7 +213,7 @@ class Update
         }
 
         header("Content-type: application/zip");
-        header("Content-Disposition: attachment; filename=sourceDESK-Update.zip");
+        header("Content-Disposition: attachment; filename=haseDESK-Update.zip");
         header("Content-length: " . filesize($f));
         header("Pragma: no-cache");
         header("Expires: 0");

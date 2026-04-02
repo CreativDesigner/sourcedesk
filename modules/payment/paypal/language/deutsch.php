@@ -12,6 +12,6 @@ $addonlang['PAY'] = "Per PayPal aufladen";
 $addonlang['APIUSERNAME'] = "API-Benutzername";
 $addonlang['APIPASSWORD'] = "API-Passwort";
 $addonlang['APISIGNATURE'] = "API-Signatur";
-$addonlang['ONLY_REFUNDS'] = "Nur notwendig f&uuml;r Erstattungen &uuml;ber sourceDESK";
+$addonlang['ONLY_REFUNDS'] = "Nur notwendig f&uuml;r Erstattungen &uuml;ber haseDESK";
 
 ?>

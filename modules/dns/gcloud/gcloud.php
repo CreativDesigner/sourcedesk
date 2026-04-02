@@ -25,7 +25,7 @@ class GCloudDNS extends DNSProvider
 
         $client = new Google_Client;
         $client->setAuthConfig($this->options->key);
-        $client->setApplicationName("sourceDESK");
+        $client->setApplicationName("haseDESK");
         $client->setScopes(['https://www.googleapis.com/auth/ndev.clouddns.readwrite']);
 
         return new $service($client);

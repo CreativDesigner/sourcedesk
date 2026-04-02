@@ -1,5 +1,5 @@
 <?php
-// Starting database connection to sourceDESK
+// Starting database connection to haseDESK
 // Providing decrypt function
 error_reporting(0);
 

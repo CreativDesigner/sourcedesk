@@ -2,7 +2,7 @@
 
 $addonlang = [
     "NAME" => "WEBFAKT Import",
-    "INTRO" => "On this page, you can import data from WEBFAKT to sourceDESK. You can get more information on how the importer works <a href=\"https://wiki.sourceway.de/index.php?title=Import#WEBFAKT-Import\" target=\"_blank\">in our wiki</a>.",
+    "INTRO" => "On this page, you can import data from WEBFAKT to haseDESK. You can get more information on how the importer works <a href=\"https://wiki.sourceway.de/index.php?title=Import#WEBFAKT-Import\" target=\"_blank\">in our wiki</a>.",
     "DBHOST" => "Database host",
     "DBUSER" => "Database user",
     "DBPASSWORD" => "Database password",
