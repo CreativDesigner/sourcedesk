@@ -1,0 +1,17 @@
+# Cronjobs
+* * * * * php /var/www/html/index.php cron recurring            # Abrechnungen
+* * * * * php /var/www/html/index.php cron backup               # Backups
+* * * * * php /var/www/html/index.php cron domain_jobs          # Domain-Änderungen
+* * * * * php /var/www/html/index.php cron domain_sync          # Domain-Synchronisierung
+* * * * * php /var/www/html/index.php cron domain_renew         # Domain-Verlängerungen
+* * * * * php /var/www/html/index.php cron queue                # E-Mailwarteschlange
+* * * * * php /var/www/html/index.php cron birthday             # Geburtstags-Glückwünsche
+* * * * * php /var/www/html/index.php cron geo_ip               # IP-Lokalisierung
+* * * * * php /var/www/html/index.php cron reminders            # Mahnungen
+* * * * * php /var/www/html/index.php cron provisioning         # Produkt-Einrichtung
+* * * * * php /var/www/html/index.php cron block_proxy          # Proxy-Adressen aktualisieren
+* * * * * php /var/www/html/index.php cron monitoring           # Server-Monitoring
+* * * * * php /var/www/html/index.php cron system_status        # System-Status
+* * * * * php /var/www/html/index.php cron ticket_import        # Ticket-Import (POP3)
+* * * * * php /var/www/html/index.php cron transfer_import      # Überweisungs-Import
+* * * * * php /var/www/html/index.php cron currency             # Währungs-Kurse
