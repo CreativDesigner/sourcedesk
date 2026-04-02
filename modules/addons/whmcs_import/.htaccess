@@ -1,0 +1,4 @@
+<Files "pidmapping.txt">
+Order deny,allow
+Deny from all
+</Files>

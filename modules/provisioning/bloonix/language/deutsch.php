@@ -1,0 +1,26 @@
+<?php
+
+$this->lang = [
+    "URL" => "Bloonix-URL",
+    "USER" => "Bloonix-Benutzername",
+    "PW" => "Bloonix-Passwort",
+    "HOSTS" => "Hosts",
+    "UH" => "0 = unbegrenzt",
+    "SERVICES" => "Dienste",
+    "USERS" => "Benutzer",
+    "SMS" => "SMS pro Monat",
+    "DOMAIN" => "Domain",
+    "DOMAINH" => "F&uuml;r E-Mailadresse beim Login",
+    "TECERR" => "Es ist ein technischer Fehler aufgetreten.",
+    "PWC" => "Das Bloonix-Passwort wurde wieder in das urspr&uuml;ngliche ge&auml;ndert.",
+    "EMC" => "Die Bloonix-Mailadresse wurde wieder in das urspr&uuml;ngliche ge&auml;ndert.",
+    "RC" => "Die Bloonix-Rechte wurden wieder in die urspr&uuml;nglichen ge&auml;ndert.",
+    "CRED" => "Monitoring-Zugangsdaten",
+    "URL" => "URL",
+    "USERNAME" => "Benutzername",
+    "PASSWORD" => "Passwort",
+    "LOGIN" => "In Bloonix einloggen",
+    "RESMAIL" => "E-Mailadresse zur&uuml;cksetzen",
+    "RESPW" => "Passwort zur&uuml;cksetzen",
+    "RESR" => "Rechte zur&uuml;cksetzen",
+];

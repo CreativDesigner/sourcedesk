@@ -1,0 +1,116 @@
+body {
+	padding-top: 50px;
+	padding-right: 0 !important;
+	overflow-y: scroll;
+}
+
+.modal-open {
+	overflow-y: scroll;
+}
+
+/* Top alert */
+.top-alert {
+    padding: 5px;
+    border-radius: 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.top-alert-nav {
+    top: 33px;
+}
+
+.top-alert-content {
+    padding-top: 85px;
+}
+
+/* Blog layout */
+.blog-entry {
+    color: #444;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.blog-meta {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.blog-comments {
+    float: right;
+}
+
+.blog-text {
+    text-align: justify;
+}
+
+/* form-inline Fix */
+.form-inline .form-control, .form-inline .btn { 
+    display: inline-block !important; 
+    width: auto!important
+}
+
+/* Modal Fix */
+.modal-open .navbar {
+    opacity: 0.5;
+}
+
+.modal-open .list-group-item.active {
+    opacity: 0.5;
+}
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carousel-inner {
+  border-radius: 15px;
+}
+
+.carousel-caption {
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 0 0 10px 25px;
+  color: #fff;
+  text-align: left;
+}
+
+.carousel-caption p {
+  color: #fff;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 15;
+  margin: 0;
+  padding: 0 25px 25px 0;
+  text-align: right;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none;
+}

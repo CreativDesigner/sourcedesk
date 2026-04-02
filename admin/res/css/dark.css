@@ -1,0 +1,37 @@
+#page-wrapper {
+    background-color: #505050;
+    color: white;
+}
+
+.navbar-default {
+    background-color: #2a2a2a;
+    border-color: #e7e7e7;
+}
+
+input, select {
+    color: black;
+}
+
+h1 small {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+table, table a {
+    color: black;
+}
+
+.alert a {
+    color: blue;
+}
+
+.panel-body {
+    background-color: #2a2a2a;
+}
+
+.modal-content {
+    background-color: #2a2a2a !important;
+}

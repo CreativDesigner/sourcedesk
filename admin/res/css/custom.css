@@ -1,0 +1,80 @@
+.language_switcher {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	list-style: none;
+}
+
+@media (max-width: 440px) {
+	.huge.scale {
+		font-size: 25px;
+	}
+}
+
+@media (max-width: 767px) {
+	.body_wrapper {
+		margin-top: 100px !important;
+	}
+}
+
+@media (min-width: 768px) {
+	.page-wrapper-hidden {
+		margin: 0px !important;
+	}
+
+	.navbar-toggle-hidden {
+		display: none !important;
+	}
+
+	.sidebar-nav-hidden {
+		display: none !important;
+	}
+}
+
+.form-inline .form-control, .form-inline .btn { 
+    display: inline-block !important; 
+    width: auto!important
+}
+
+.btn-circle {
+	width: 40px;
+	height: 40px;
+	padding: 3px 3.3px !important;
+	font-size: 12px;
+	line-height: 1.33;
+	border-radius: 25px;
+}
+
+.feedback{position: fixed; z-index: 2000 !important;}
+
+.feedback textarea{height: 180px; margin-bottom: 0; resize: none;}
+.feedback .screenshot{ position: relative; top: -24px; right: 10px; opacity: .6}
+.feedback .screenshot:hover{  opacity: 1}
+.feedback .reported p, .feedback .failed p  { height: 190px}
+
+
+.feedback.left{left:5px; bottom:5px}
+.feedback.right{right:5px; bottom:5px}
+
+.feedback .dropdown-menu{width: 290px;height: 320px;bottom: 50px;}
+.feedback.left .dropdown-menu{ left: 0px}
+.feedback.right .dropdown-menu{ right: 0px}
+.feedback .hideme{ display: none}
+
+.darkmode{position: fixed; z-index: 2000 !important;}
+.darkmode.left{left:40px; bottom:5px}
+
+.frontend{position: fixed; z-index: 2000 !important;}
+.frontend.left{left:75px; bottom:5px}
+
+.wiki{position: fixed; z-index: 2000 !important;}
+.wiki.left{left:110px; bottom:5px}
+
+body {
+	overflow-y: scroll !important;
+}
+
+.customer-input-results, .invoice-input-results {
+	padding-top: 10px;
+	display: none;
+}

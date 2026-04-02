@@ -1,0 +1,25 @@
+<?php
+
+$this->lang = [
+    "CFNN" => "Die Verbindung zum Server ist fehlgeschlagen oder es existiert kein Node.",
+    "NOTPL" => "Es existieren keine Server-Vorlagen.",
+    "NOOS" => "Es existieren keine Betriebssysteme.",
+    "NOROLES" => "Es existieren keine Benutzer-Rechte.",
+    "PLAN" => "Vorlage",
+    "SERVER" => "Server",
+    "OS" => "Betriebssystem",
+    "ROLE" => "Benutzer-Rechte",
+    "HOSTNAME" => "Hostname",
+    "USERNAME" => "Benutzername",
+    "PASSWORD" => "Passwort",
+    "SECRET" => "Geheim",
+    "CHECKCONN" => "Verbindung pr&uuml;fen",
+    "CHECKINGCONN" => "Verbindung wird gepr&uuml;ft...",
+    "NOIP" => "Keine IP-Adresse vorhanden.",
+    "NOCL" => "Kunde nicht gefunden.",
+    "SD" => "vServer-Daten",
+    "IPA" => "IP-Adresse",
+    "RPW" => "Root-Passwort",
+    "MANAGE" => "Verwaltung",
+    "URL" => "URL",
+];

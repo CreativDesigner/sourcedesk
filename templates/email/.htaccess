@@ -1,0 +1,9 @@
+<Files "logo.png">
+Allow from all
+Satisfy Any
+</Files>
+
+<Files "bg[0-9].jpg">
+Allow from all
+Satisfy Any
+</Files>

@@ -1,0 +1,16 @@
+.top-alert-content {
+    padding-top: 85px;
+}
+
+.btn-default {
+    border-color: #212529;
+    border-width: 1px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.radio > label, .checkbox > label {
+    font-weight: normal;
+}

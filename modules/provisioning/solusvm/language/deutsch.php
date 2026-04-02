@@ -1,0 +1,25 @@
+<?php
+
+$this->lang = [
+    "CFNS" => "Die Verbindung zum Server ist fehlgeschlagen oder es existieren keine Server für diesen Typ.",
+    "NOPLANS" => "Es existieren keine Vorlagen für diesen Typ.",
+    "PLAN" => "Vorlage",
+    "SERVER" => "Server",
+    "OWRAM" => "RAM überschreiben (in GB)",
+    "FN" => "Name des Feldes (optional)",
+    "OWSPACE" => "Speicher überschreiben (in GB)",
+    "OWCPU" => "vCores überschreiben",
+    "HOST" => "Hostname",
+    "APIID" => "API-ID",
+    "APIKEY" => "API-Key",
+    "VTYPE" => "vServer-Typ",
+    "CHECKCONN" => "Verbindung pr&uuml;fen",
+    "CHECKINGCONN" => "Verbindung wird gepr&uuml;ft...",
+    "VSD" => "vServer-Daten",
+    "IPA" => "IP-Adresse",
+    "RPW" => "Root-Passwort",
+    "MNGT" => "Verwaltung",
+    "URL" => "URL",
+    "USERNAME" => "Benutzername",
+    "PASSWORD" => "Passwort",
+];

@@ -1,0 +1,25 @@
+<?php
+
+$this->lang = [
+    "CFNS" => "The connection to the server has failed or there are no nodes for this type.",
+    "NOPLANS" => "There are no plans for this type.",
+    "PLAN" => "Plan",
+    "SERVER" => "Server",
+    "OWRAM" => "Overwrite RAM (GB)",
+    "FN" => "Name of field (optional)",
+    "OWSPACE" => "Overwrite disk space (GB)",
+    "OWCPU" => "Overwrite vCores",
+    "HOST" => "Hostname",
+    "APIID" => "API ID",
+    "APIKEY" => "API key",
+    "VTYPE" => "vServer type",
+    "CHECKCONN" => "Check connection",
+    "CHECKINGCONN" => "Connection is being checked...",
+    "VSD" => "vServer data",
+    "IPA" => "IP address",
+    "RPW" => "Root password",
+    "MNGT" => "Management",
+    "URL" => "URL",
+    "USERNAME" => "Username",
+    "PASSWORD" => "Password",
+];

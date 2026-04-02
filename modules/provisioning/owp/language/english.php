@@ -1,0 +1,25 @@
+<?php
+
+$this->lang = [
+    "CFNN" => "The connection to the server failed or there is no node.",
+    "NOTPL" => "There are no server plans.",
+    "NOOS" => "There are no operating systems.",
+    "NOROLES" => "There are no user roles.",
+    "PLAN" => "Plan",
+    "SERVER" => "Server",
+    "OS" => "Operating system",
+    "ROLE" => "User role",
+    "HOSTNAME" => "Hostname",
+    "USERNAME" => "Username",
+    "PASSWORD" => "Password",
+    "SECRET" => "Secret",
+    "CHECKCONN" => "Check connection",
+    "CHECKINGCONN" => "Connection is being checked...",
+    "NOIP" => "No IP address found.",
+    "NOCL" => "Customer not found.",
+    "SD" => "Server data",
+    "IPA" => "IP address",
+    "RPW" => "Root password",
+    "MANAGE" => "Management",
+    "URL" => "URL",
+];

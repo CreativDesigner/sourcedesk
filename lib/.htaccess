@@ -1,0 +1,6 @@
+Order Allow,Deny
+Deny from all
+
+<Files "high-sql.txt">
+Allow from all
+</Files>

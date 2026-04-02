@@ -1,0 +1,216 @@
+<?php
+// Class for making stripe payments (Sofort)
+
+class StripeSofortPG extends PaymentGateway
+{
+    public static $shortName = "stripe_sofort";
+
+    public function getVersion()
+    {
+        return "1.1";
+    }
+
+    public function __construct($language)
+    {
+        parent::__construct(self::$shortName);
+        $this->language = $language;
+
+        if (!include (__DIR__ . "/language/$language.php")) {
+            throw new ModuleException();
+        }
+
+        if (!is_array($addonlang) || !isset($addonlang["NAME"])) {
+            throw new ModuleException();
+        }
+
+        $this->lang = $addonlang;
+        $this->options = array(
+            "public_key" => array("type" => "text", "name" => $this->getLang('public_key')),
+            "private_key" => array("type" => "text", "name" => $this->getLang('private_key')),
+        );
+        $this->log = true;
+        $this->cashbox = false;
+    }
+
+    public function canSee($user)
+    {
+        if (!parent::canSee($user)) {
+            return false;
+        }
+
+        return in_array($user->get()['country_alpha2'], ["DE", "NL", "AT", "BE", "IT", "ES"]);
+    }
+
+    public function makePayment()
+    {
+        global $db, $user, $CFG, $transactions, $var, $nfo, $cur, $raw_cfg;
+
+        if (!$this->canPay($user)) {
+            return;
+        }
+
+        if (isset($_GET['stripe_sofort'])) {
+            $log = "System gestartet\n";
+            try {
+                require_once __DIR__ . "/../stripe/lib/init.php";
+                \Stripe\Stripe::setApiKey($this->settings['private_key']);
+
+                $charge = \Stripe\Charge::create(array(
+                    "amount" => $_GET['amount'],
+                    "currency" => "eur",
+                    "source" => $_GET['source'],
+                ));
+
+                if ($charge->status != "succeeded") {
+                    throw new Exception("Zahlung fehlgeschlagen");
+                }
+
+                try {
+                    $curObj = new Currency("eur");
+                } catch (CurrencyException $ex) {
+                    throw new Exception("Unbekannte W&auml;hrung: " . $currency);
+                }
+
+                $amount = $payment_amount = $curObj->convertBack($_GET['amount'] / 100);
+                $fees = $this->getFees($amount);
+
+                // Update the user credit and insert the transaction in the database
+                $db->query("UPDATE clients SET credit = credit + '" . $db->real_escape_string($amount) . "' WHERE ID = '" . $db->real_escape_string($user->get()['ID']) . "' LIMIT 1");
+                $transactions->insert("stripe_sofort", $_GET['source'], $amount, $user->get()['ID'], "", 1);
+                $log .= "Guthaben aktualisiert\nTransaktion eingef&uuml;gt";
+
+                $userInfo = $db->query("SELECT * FROM clients WHERE ID = " . $user->get()['ID'])->fetch_object();
+
+                // Send admin notification
+                if (($ntf = AdminNotification::getInstance("IPN-Gutschrift")) !== false) {
+                    $ntf->set("amount", $cur->infix($nfo->format($payment_amount), $cur->getBaseCurrency()));
+                    $ntf->set("fees", $cur->infix($nfo->format($fees), $cur->getBaseCurrency()));
+                    $ntf->set("gateway", $this->getLang("name"));
+                    $ntf->set("customer", $userInfo->firstname . " " . $userInfo->lastname);
+                    $ntf->set("clink", $raw_cfg['PAGEURL'] . "admin/?p=customers&edit=" . $userInfo->ID);
+                    $ntf->send();
+                }
+
+                $uI = User::getInstance($userInfo->ID, "ID");
+
+                // Invoice fees
+                if ($fees > 0) {
+                    $uI->invoiceFees($fees);
+                    $log .= "\nGeb&uuml;hren gebucht";
+                }
+
+                $uI->applyCredit();
+
+                throw new Exception("", 1);
+            } catch (Exception $ex) {
+                $log .= $ex->getMessage();
+                $log = $db->real_escape_string($log);
+                $_POST['currency'] = $currency;
+                $_POST['userid'] = $user->get()['ID'];
+                $data = $db->real_escape_string(print_r($_POST, true));
+                $db->query("INSERT INTO gateway_logs (`data`, `log`, `time`, `gateway`) VALUES ('$data', '$log', " . time() . ", 'stripe_sofort')");
+                if ($ex->getCode() == 1) {
+                    $this->global = "<div class='alert alert-success'>" . $this->getLang('done') . "</div>";
+                } else {
+                    $this->global = "<div class='alert alert-danger'>" . $this->getLang('failed') . "</div>";
+                }
+
+            }
+        }
+    }
+
+    public function getPaymentForm($amount = null)
+    {
+        global $user, $CFG, $var, $nfo, $cur, $lang;
+        $c = $var['currencyObj'];
+
+        $append = "";
+        if ($this->settings['excl'] == "1") {
+            $append = "_EXCL";
+        }
+
+        $fees = "";
+        if ($this->settings['fix'] != 0 && $this->settings['percent'] != 0) {
+            $fees = " " . str_replace(array("%p", "%a"), array($nfo->format($this->settings['percent'], 2, true), $cur->infix($nfo->format($cur->convertAmount(null, $this->settings['fix']), 2))), $lang['CREDIT']['FEES_BOTH' . $append]);
+        } else if ($this->settings['fix'] != 0) {
+            $fees = " " . str_replace(array("%p", "%a"), array($nfo->format($this->settings['percent'], 2, true), $cur->infix($nfo->format($cur->convertAmount(null, $this->settings['fix']), 2))), $lang['CREDIT']['FEES_FIX' . $append]);
+        } else if ($this->settings['percent'] != 0) {
+            $fees = " " . str_replace(array("%p", "%a"), array($nfo->format($this->settings['percent'], 2, true), $cur->infix($nfo->format($cur->convertAmount(null, $this->settings['fix']), 2))), $lang['CREDIT']['FEES_PERCENT' . $append]);
+        }
+
+        ob_start();?>
+		<script type="text/javascript">
+	        document.write("<p>");
+	        document.write("<form method=\"POST\" class=\"form-inline\" onsubmit=\"return false;\" id=\"sofort_form\"><div class=\"input-group\" id=\"payment_amount_group\"><?php if (!empty($c->getPrefix())) {?><span class=\"input-group-addon\"><?=$c->getPrefix();?></span> <?php }?><input type=\"text\" id=\"sofort_amount\" name=\"sofort_amount\" value=\"<?=$amount !== null ? $amount : "";?>\" placeholder=\"<?=$this->getLang('amount');?>\" onkeydown=\"stripeFeesAdded = 0;\" style=\"max-width:80px\" class=\"form-control\"><?php if (!empty($c->getSuffix())) {?> <span class=\"input-group-addon\"><?=$c->getSuffix();?></span><?php }?><\/div>&nbsp;<input value=\"<?=$this->getLang('pay') . $fees;?>\" type=\"submit\" id=\"sofort_payment\" onclick=\"addStripeFeesSofort()\" class=\"btn btn-primary\" \/><\/form>");
+	        document.write("<\/p>");
+
+	        var stripe_public = '<?=$this->settings['public_key'];?>';
+	        var userId = '<?=$user->get()['ID'];?>';
+	        var userMail = '<?=$user->get()['mail'];?>';
+	        var stripe_currency = '<?=$var['myCurrency'];?>';
+	        var prefix = '<?=$this->getLang('prefix');?>';
+	        var pagename = '<?=$CFG['PAGENAME'];?>';
+
+	        function stripeResponseHandlerSofort(status, response) {
+	        	window.location = response.redirect.url;
+			}
+
+	        stripeFeesAddedSofort = 0;
+	        function addStripeFeesSofort() {
+	        	<?php if ($this->settings['excl'] == 1) {?>
+	        	if(!stripeFeesAddedSofort){
+		        	var percent = <?=$this->settings['percent'];?>;
+		        	var fix  	= Number(<?=$cur->convertAmount(null, $this->settings['fix']);?>);
+		        	var value   = Number(document.getElementById("sofort_amount").value.replace(',', '.'));
+
+					value += value * percent / 100;
+					value += fix;
+					value  = String(Number(Math.ceil(value * 100) / 100).toFixed(2));
+					document.getElementById("sofort_amount").value = value<?=$CFG['NUMBER_FORMAT'] == "de" ? ".replace('.', ',')" : "";?>;
+					stripeFeesAddedSofort = 1;
+				}
+				<?php }?>
+
+				Stripe.setPublishableKey(stripe_public);
+				Stripe.source.create({
+				  type: 'sofort',
+				  amount: $("#sofort_amount").val().replace(",", ".") * 100,
+				  currency: 'eur',
+				  owner: {
+				    name: '<?=$user->get()['name'];?>',
+                  },
+                  sofort: {
+                      country: '<?=$user->get()['country_alpha2'];?>',
+                  },
+				  redirect: {
+				    return_url: '<?=$CFG['PAGEURL'];?>credit?stripe_sofort=1&amount=' + ($("#sofort_amount").val().replace(",", ".") * 100),
+				  },
+				}, stripeResponseHandlerSofort);
+	        }
+		</script>
+
+		<noscript><div class="alert alert-info"><?=$this->getLang('no_js');?></div></noscript>
+		<?php
+$res = ob_get_contents();
+        ob_end_clean();
+        return $res;
+    }
+
+    public function getPaymentHandler()
+    {
+        return false;
+    }
+
+    public function getIpnHandler()
+    {
+        return false;
+    }
+
+    public function getJavaScript()
+    {
+        return ["https://checkout.stripe.com/checkout.js", "https://js.stripe.com/v2/"];
+    }
+
+}
+
+?>

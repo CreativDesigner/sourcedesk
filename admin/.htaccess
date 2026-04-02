@@ -1,0 +1,3 @@
+RewriteEngine Off
+RewriteEngine On
+RewriteRule ^adminer.php$ index.php?p=adminer [QSA,NC,L]
